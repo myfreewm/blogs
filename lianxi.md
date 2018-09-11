@@ -80,7 +80,28 @@ cond(no)->op
 
 [1]: http://baidui.com
 ## 换行
-note: 在当前行的结尾加 2 个空格  
+note: 在当前行的结尾加 2个空格
 这是第一行  
 这是第二行  
 
+图片  
+![][avatar]  
+
+[avatar]: https://connorlin.github.io/images/avatar.jpg
+
+脚注  
+
+这是一个脚注[^1]
+[^1]:this is a foot
+
+<font face="微软雅黑" color="red" size="6">字体及字体颜色和大小</font>
+<font color="#0000ff">字体颜色</font>
+
+
+<u>this is 下划线</u>
+
+### 文本对齐方式
+
+<p align="left">居左文本</p>
+<p align="center">居中文本</p>
+<p align="right">居右文本</p>
