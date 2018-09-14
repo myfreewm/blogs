@@ -1,0 +1,42 @@
+
+
+* top lever
+
+** the second lever
+
+*** the third lever
+
+**** list
+- this attack of the Rohirim
+
+- eowy
+
+- thi si s
+- this is s
+
+**** 注脚
+
+	 this org homepage[1] now look a lot better
+	 this org homepage[2] now look a lot better
+
+
+[1] this is link : http:baidu.com
+[2] http:baidu.com
+
+**** table
+
+     | 1 | 2 |
+     | 1 | 2 |
+     | 1 | 2 |
+     | 1 | 2 |
+
+**** todolist
+* HANGUP todo wirte org mode document
+  - State "HANGUP"     from "DONE"       [2018-09-14 周五 14:50]
+  - State "DONE"       from "TODO"       [2018-09-14 周五 14:50]
+  - State "DOING"      from "HANGUP"     [2018-09-14 周五 14:50]
+  - State "HANGUP"     from "DONE"       [2018-09-14 周五 14:50]
+  - State "DONE"       from "CANCEL"     [2018-09-14 周五 14:50]
+  - State "CANCEL"     from "DONE"       [2018-09-14 周五 14:49]
+  - State "HANGUP"     from "DOING"      [2018-09-14 周五 14:49]
+  - State "DOING"      from "TODO"       [2018-09-14 周五 14:49]

@@ -2,7 +2,7 @@
 
 ## try catch 基本使用方法
 
-``` javascript
+```
 try{
 
     }catch(e){
