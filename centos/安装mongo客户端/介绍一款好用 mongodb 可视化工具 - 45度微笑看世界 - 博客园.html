@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<!-- saved from url=(0047)https://www.cnblogs.com/shiweida/p/7692468.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="never">
+<title>介绍一款好用 mongodb 可视化工具 - 45度微笑看世界 - 博客园</title>
+<meta property="og:description" content="最近想自己搭建一个个人博客，所以学了下mongodb，mongodb是用命令行输入的，有些人可能不太习惯，我自己找了下mongodb的一些可视化工具，发现了一款adminmongo很好用，这里介绍给你">
+<link type="text/css" rel="stylesheet" href="./介绍一款好用 mongodb 可视化工具 - 45度微笑看世界 - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./介绍一款好用 mongodb 可视化工具 - 45度微笑看世界 - 博客园_files/bundle-CodingLife.css">
+<link type="text/css" rel="stylesheet" href="./介绍一款好用 mongodb 可视化工具 - 45度微笑看世界 - 博客园_files/379145.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./介绍一款好用 mongodb 可视化工具 - 45度微笑看世界 - 博客园_files/bundle-CodingLife-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/shiweida/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/shiweida/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/shiweida/wlwmanifest.xml">
+<script async="" src="./介绍一款好用 mongodb 可视化工具 - 45度微笑看世界 - 博客园_files/analytics.js.下载"></script><script type="text/javascript" src="./介绍一款好用 mongodb 可视化工具 - 45度微笑看世界 - 博客园_files/encoder.js.下载"></script><script src="./介绍一款好用 mongodb 可视化工具 - 45度微笑看世界 - 博客园_files/jquery-2.2.0.min.js.下载"></script>
+<script type="text/javascript">var currentBlogApp = 'shiweida', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./介绍一款好用 mongodb 可视化工具 - 45度微笑看世界 - 博客园_files/blog-common.js.下载" type="text/javascript"></script>
+</head>
+<body style="">
+<a name="top"></a>
+<!--PageBeginHtml Block Begin-->
+<a href="https://github.com/sweida" target="_blank">  
+<img id="gitimg" src="./介绍一款好用 mongodb 可视化工具 - 45度微笑看世界 - 博客园_files/github.png">
+</a>
+<!--PageBeginHtml Block End-->
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="https://www.cnblogs.com/shiweida/"><img id="blogLogo" src="./介绍一款好用 mongodb 可视化工具 - 45度微笑看世界 - 博客园_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="https://www.cnblogs.com/shiweida/">45°微笑看世界</a></h1>
+<h2>人生若只如初见 https://www.sweida.me</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/shiweida/">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/45%E5%BA%A6%E5%BE%AE%E7%AC%91%E7%9C%8B%E4%B8%96%E7%95%8C">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="https://www.cnblogs.com/shiweida/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="https://www.cnblogs.com/shiweida/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 30&nbsp; </span>
+<span id="stats_article_count">文章 - 0&nbsp; </span>
+<span id="stats-comment_count">评论 - 12</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="https://www.cnblogs.com/shiweida/p/7692468.html">介绍一款好用 mongodb 可视化工具</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p><span style="font-size: 16px">最近想自己搭建一个个人博客，所以学了下mongodb，mongodb是用命令行输入的，有些人可能不太习惯，我自己找了下mongodb的一些可视化工具，发现了一款adminmongo很好用，这里介绍给你们用一下。</span></p>
+<p><a href="./介绍一款好用 mongodb 可视化工具 - 45度微笑看世界 - 博客园_files/adminMongo_collectionview.png" target="_blank"><img title="adminMongo collections screen" src="./介绍一款好用 mongodb 可视化工具 - 45度微笑看世界 - 博客园_files/adminMongo_collectionview.png" alt="adminMongo collections screen"></a></p>
+<p>&nbsp;</p>
+<p><span style="font-size: 16px">github地址：<a href="https://github.com/mrvautin/adminMongo" target="_blank">https://github.com/mrvautin/adminMongo</a></span></p>
+<p><span style="font-size: 18px">安装方法：</span></p>
+<p>1、把git仓库克隆到本地</p>
+<div class="cnblogs_code">
+<pre>git clone https:<span style="color: #008000">//</span><span style="color: #008000">github.com/mrvautin/adminMongo</span></pre>
+</div>
+<p>2、进入仓库</p>
+<div class="cnblogs_code">
+<pre>cd adminMongo</pre>
+</div>
+<p>3、安装</p>
+<div class="cnblogs_code">
+<pre>npm install</pre>
+</div>
+<p>4、启动</p>
+<div class="cnblogs_code">
+<pre>npm start</pre>
+</div>
+<p>5、访问地址&nbsp;<a href="http://127.0.0.1:1234/">http://127.0.0.1:1234</a>&nbsp;</p>
+<p>进来之后只需填写数据库名称（随便起一个），和本地ip地址 mongodb://127.0.0.1:27017 即可，然后点击右边的"黑色按钮connect"进入即可</p>
+<p><a href="./介绍一款好用 mongodb 可视化工具 - 45度微笑看世界 - 博客园_files/adminMongo_connections.png" target="_blank"><img title="adminMongo connections screen" src="./介绍一款好用 mongodb 可视化工具 - 45度微笑看世界 - 博客园_files/adminMongo_connections.png" alt="adminMongo connections screen"></a></p>
+<p><a href="./介绍一款好用 mongodb 可视化工具 - 45度微笑看世界 - 博客园_files/adminMongo_dbview.png" target="_blank"><img title="adminMongo database screen" src="./介绍一款好用 mongodb 可视化工具 - 45度微笑看世界 - 博客园_files/adminMongo_dbview.png" alt="adminMongo database screen"></a></p>
+<p><a href="./介绍一款好用 mongodb 可视化工具 - 45度微笑看世界 - 博客园_files/adminMongo_collectionview.png" target="_blank"><img title="adminMongo collections screen" src="./介绍一款好用 mongodb 可视化工具 - 45度微笑看世界 - 博客园_files/adminMongo_collectionview.png" alt="adminMongo collections screen"></a></p>
+<p>可以看了，可以愉快的玩耍mongodb了</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag">标签: <a href="https://www.cnblogs.com/shiweida/tag/mongodb/">mongodb</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(7692468,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;7adc38ed-c737-e211-aa8f-842b2b196315&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./介绍一款好用 mongodb 可视化工具 - 45度微笑看世界 - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./介绍一款好用 mongodb 可视化工具 - 45度微笑看世界 - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/shiweida/" target="_blank"><img src="./介绍一款好用 mongodb 可视化工具 - 45度微笑看世界 - 博客园_files/20171103230956.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/shiweida/">45度微笑看世界</a><br>
+            <a href="http://home.cnblogs.com/u/shiweida/followees">关注 - 3</a><br>
+            <a href="http://home.cnblogs.com/u/shiweida/followers">粉丝 - 5</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;7adc38ed-c737-e211-aa8f-842b2b196315&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(7692468,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">6</span>
+    </div>
+    <div class="buryit" onclick="votePost(7692468,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+<script type="text/javascript">
+    currentDiggType = 0;
+</script></div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="https://www.cnblogs.com/shiweida/p/7692284.html" class="p_n_p_prefix">« </a> 上一篇：<a href="https://www.cnblogs.com/shiweida/p/7692284.html" title="发布于2017-10-19 14:23">安装MongoDB启动时报错‘发生系统错误2’的解决办法</a><br><a href="https://www.cnblogs.com/shiweida/p/7693159.html" class="p_n_p_prefix">» </a> 下一篇：<a href="https://www.cnblogs.com/shiweida/p/7693159.html" title="发布于2017-10-19 16:15">详细图解window环境mongodb下载、安装、配置与使用</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2017-10-19 14:50</span> <a href="https://www.cnblogs.com/shiweida/">45度微笑看世界</a> 阅读(<span id="post_view_count">24715</span>) 评论(<span id="post_comment_count">12</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=7692468" rel="nofollow">编辑</a> <a href="https://www.cnblogs.com/shiweida/p/7692468.html#" onclick="AddToWz(7692468);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=379145,cb_entryId=7692468,cb_blogApp=currentBlogApp,cb_blogUserGuid='7adc38ed-c737-e211-aa8f-842b2b196315',cb_entryCreatedDate='2017/10/19 14:50:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<br>
+<div class="feedback_area_title">评论列表</div>
+<div class="feedbackNoItems"></div>	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/shiweida/p/7692468.html#3846188" class="layer">#1楼</a><a name="3846188" id="comment_anchor_3846188"></a>  <span class="comment_date">2017-11-21 11:14</span> <a id="a_comment_author_3846188" href="https://www.cnblogs.com/bfwbfw/" target="_blank">吴封斌技术博客</a> <a href="http://msg.cnblogs.com/send/%E5%90%B4%E5%B0%81%E6%96%8C%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3846188" class="blog_comment_body">很不错。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3846188,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3846188,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3846188_avatar" style="display:none;">http://pic.cnblogs.com/face/860581/20171014151148.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/shiweida/p/7692468.html#3897279" class="layer">#2楼</a><a name="3897279" id="comment_anchor_3897279"></a>  <span class="comment_date">2018-01-25 15:10</span> <a id="a_comment_author_3897279" href="https://www.cnblogs.com/miaololi/" target="_blank">幼儿缘小学生</a> <a href="http://msg.cnblogs.com/send/%E5%B9%BC%E5%84%BF%E7%BC%98%E5%B0%8F%E5%AD%A6%E7%94%9F" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3897279" class="blog_comment_body">完全不知道怎么装</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3897279,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3897279,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3897279_avatar" style="display:none;">http://pic.cnblogs.com/face/923261/20180227135341.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/shiweida/p/7692468.html#3929202" class="layer">#3楼</a><a name="3929202" id="comment_anchor_3929202"></a>  <span class="comment_date">2018-03-21 14:43</span> <a id="a_comment_author_3929202" href="https://www.cnblogs.com/gaocong/" target="_blank">小小高</a> <a href="http://msg.cnblogs.com/send/%E5%B0%8F%E5%B0%8F%E9%AB%98" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3929202" class="blog_comment_body">赞一个</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3929202,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3929202,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3929202_avatar" style="display:none;">http://pic.cnblogs.com/face/723949/20160907125106.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/shiweida/p/7692468.html#3929204" class="layer">#4楼</a><a name="3929204" id="comment_anchor_3929204"></a>  <span class="comment_date">2018-03-21 14:45</span> <a id="a_comment_author_3929204" href="https://www.cnblogs.com/gaocong/" target="_blank">小小高</a> <a href="http://msg.cnblogs.com/send/%E5%B0%8F%E5%B0%8F%E9%AB%98" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3929204" class="blog_comment_body">第三步应该为<br>npm install</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3929204,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3929204,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3929204_avatar" style="display:none;">http://pic.cnblogs.com/face/723949/20160907125106.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/shiweida/p/7692468.html#3929241" class="layer">#5楼</a><a name="3929241" id="comment_anchor_3929241"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2018-03-21 15:16</span> <a id="a_comment_author_3929241" href="https://www.cnblogs.com/shiweida/" target="_blank">45度微笑看世界</a> <a href="http://msg.cnblogs.com/send/45%E5%BA%A6%E5%BE%AE%E7%AC%91%E7%9C%8B%E4%B8%96%E7%95%8C" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3929241" class="blog_comment_body"><a href="https://www.cnblogs.com/shiweida/p/7692468.html#3929204" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3929204);">@</a>
+小小高<br>已经改了</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3929241,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3929241,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3929241_avatar" style="display:none;">http://pic.cnblogs.com/face/473138/20171103230956.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/shiweida/p/7692468.html#3950187" class="layer">#6楼</a><a name="3950187" id="comment_anchor_3950187"></a>  <span class="comment_date">2018-04-12 20:56</span> <a id="a_comment_author_3950187" href="https://www.cnblogs.com/jiangdd/" target="_blank">天亦玄</a> <a href="http://msg.cnblogs.com/send/%E5%A4%A9%E4%BA%A6%E7%8E%84" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3950187" class="blog_comment_body">我执行第三步的时候报错<br>bash: npm: command not found<br>这个该怎么解决？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3950187,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3950187,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/shiweida/p/7692468.html#3950247" class="layer">#7楼</a><a name="3950247" id="comment_anchor_3950247"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2018-04-12 22:14</span> <a id="a_comment_author_3950247" href="https://www.cnblogs.com/shiweida/" target="_blank">45度微笑看世界</a> <a href="http://msg.cnblogs.com/send/45%E5%BA%A6%E5%BE%AE%E7%AC%91%E7%9C%8B%E4%B8%96%E7%95%8C" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3950247" class="blog_comment_body"><a href="https://www.cnblogs.com/shiweida/p/7692468.html#3950187" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3950187);">@</a>
+天亦玄<br>你电脑没有安装node.js，安装node就可以了，npm自动集成，安装后输npm -v，即可查看版本号</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3950247,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3950247,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3950247_avatar" style="display:none;">http://pic.cnblogs.com/face/473138/20171103230956.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/shiweida/p/7692468.html#3966247" class="layer">#8楼</a><a name="3966247" id="comment_anchor_3966247"></a>  <span class="comment_date">2018-05-03 14:08</span> <a id="a_comment_author_3966247" href="https://www.cnblogs.com/tinya/" target="_blank">天涯过者</a> <a href="http://msg.cnblogs.com/send/%E5%A4%A9%E6%B6%AF%E8%BF%87%E8%80%85" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3966247" class="blog_comment_body">nodejs用什么版本的</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3966247,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3966247,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3966247_avatar" style="display:none;">http://pic.cnblogs.com/face/663962/20150703135050.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/shiweida/p/7692468.html#3966253" class="layer">#9楼</a><a name="3966253" id="comment_anchor_3966253"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2018-05-03 14:11</span> <a id="a_comment_author_3966253" href="https://www.cnblogs.com/shiweida/" target="_blank">45度微笑看世界</a> <a href="http://msg.cnblogs.com/send/45%E5%BA%A6%E5%BE%AE%E7%AC%91%E7%9C%8B%E4%B8%96%E7%95%8C" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3966253" class="blog_comment_body"><a href="https://www.cnblogs.com/shiweida/p/7692468.html#3966247" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3966247);">@</a>
+天涯过者<br>都可以,安装最新的版本就行</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3966253,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3966253,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3966253_avatar" style="display:none;">http://pic.cnblogs.com/face/473138/20171103230956.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/shiweida/p/7692468.html#3966549" class="layer">#10楼</a><a name="3966549" id="comment_anchor_3966549"></a>  <span class="comment_date">2018-05-03 18:57</span> <a id="a_comment_author_3966549" href="https://www.cnblogs.com/tinya/" target="_blank">天涯过者</a> <a href="http://msg.cnblogs.com/send/%E5%A4%A9%E6%B6%AF%E8%BF%87%E8%80%85" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3966549" class="blog_comment_body">不知道怎么登陆的</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3966549,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3966549,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3966549_avatar" style="display:none;">http://pic.cnblogs.com/face/663962/20150703135050.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/shiweida/p/7692468.html#3983160" class="layer">#11楼</a><a name="3983160" id="comment_anchor_3983160"></a>  <span class="comment_date">2018-05-27 15:58</span> <a id="a_comment_author_3983160" href="https://www.cnblogs.com/chenxuezhouLearnProgram/" target="_blank">乐可2016</a> <a href="http://msg.cnblogs.com/send/%E4%B9%90%E5%8F%AF2016" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3983160" class="blog_comment_body">11045 verbose stack SyntaxError: Unexpected end of JSON input<br>11045 verbose stack {"_id":"electron-download","_rev":"3699711","nam</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3983160,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3983160,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/shiweida/p/7692468.html#4005714" class="layer">#12楼</a><a name="4005714" id="comment_anchor_4005714"></a><span id="comment-maxId" style="display:none;">4005714</span><span id="comment-maxDate" style="display:none;">2018/6/26 9:07:33</span>  <span class="comment_date">2018-06-26 09:07</span> <a id="a_comment_author_4005714" href="https://www.cnblogs.com/noper/" target="_blank">码先生</a> <a href="http://msg.cnblogs.com/send/%E7%A0%81%E5%85%88%E7%94%9F" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_4005714" class="blog_comment_body">mark 正好有需求</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(4005714,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(4005714,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_4005714_avatar" style="display:none;">http://pic.cnblogs.com/face/1064201/20161204162825.png</span>
+			</div>
+		</div>
+	<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="https://www.cnblogs.com/shiweida/p/7692468.html#" onclick="return RefreshPage();">刷新页面</a><a href="https://www.cnblogs.com/shiweida/p/7692468.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】超50万VC++源码: 大型组态工控、电力仿真CAD与GIS源码库！</a><br><a href="https://www.linuxprobe.com/chapter-00.html" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-linuxprobe&#39;)">【免费】要想入门学习Linux系统技术，你应该先选择一本适合自己的书籍</a><br><a href="https://www.grapecity.com.cn/developer/spreadjs?utm_source=cnblogs&amp;utm_medium=blogpage&amp;utm_term=bottom&amp;utm_content=SpreadJS&amp;utm_campaign=community" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-SpreadJS&#39;)">【前端】SpreadJS表格控件，可嵌入应用开发的在线Excel</a><br><a href="https://cloud.tencent.com/developer/edu/major-100005?fromSource=gwzcw.1312543.1312543.1312543#course-1274" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-微信支付&#39;)">【直播】如何快速接入微信支付功能</a><br></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"><a href="https://cloud.tencent.com/act/special/rav?fromSource=gwzcw.1312547.1312547.1312547" target="_blank"><img width="300" height="250" src="./介绍一款好用 mongodb 可视化工具 - 45度微笑看世界 - 博客园_files/24442-20180914091419057-283402001.jpg" alt="腾讯云" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;C1&#39;);"></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="https://news.cnblogs.com/n/607488/" target="_blank">传腾讯酝酿组织架构调整 集团回应：不予置评</a><br> ·  <a href="https://news.cnblogs.com/n/607485/" target="_blank">阿里安全宣布已完美越狱iOS 12</a><br> ·  <a href="https://news.cnblogs.com/n/607487/" target="_blank">微信香港钱包接入快速支付系统 将上线跨行转账等三大功能</a><br> ·  <a href="https://news.cnblogs.com/n/607484/" target="_blank">阿里巴巴CFO：公司已经进行了800亿美元的战略投资</a><br> ·  <a href="https://news.cnblogs.com/n/607483/" target="_blank">腾讯发布AI开放平台 攻坚通用人工智能</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"><a href="http://clickc.admaster.com.cn/c/a113319,b2799157,c1705,i0,m101,8a1,8b3,h,uhttps://activity.huaweicloud.com/hc2018-promotion/index.html?utm_source=chmarketing&amp;utm_medium=mediabuy&amp;utm_campaign=hc2018chinaimc&amp;utm_content=cnblogshcpromotionembraceai" target="_blank"><img width="468" height="60" src="./介绍一款好用 mongodb 可视化工具 - 45度微笑看世界 - 博客园_files/24442-20180916205959082-1265433055.jpg" alt="华为云HC0917" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;C2&#39;);"></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="https://kb.cnblogs.com/page/606682/" target="_blank">为什么说 Java 程序员必须掌握 Spring Boot ？</a><br> ·  <a href="https://kb.cnblogs.com/page/606645/" target="_blank">在学习中，有一个比掌握知识更重要的能力</a><br> ·  <a href="https://kb.cnblogs.com/page/603663/" target="_blank">如何招到一个靠谱的程序员</a><br> ·  <a href="https://kb.cnblogs.com/page/573614/" target="_blank">一个故事看懂“区块链”</a><br> ·  <a href="https://kb.cnblogs.com/page/603697/" target="_blank">被踢出去的用户</a><br></div>» <a href="https://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div id="profile_block">昵称：<a href="https://home.cnblogs.com/u/shiweida/">45度微笑看世界</a><br>园龄：<a href="https://home.cnblogs.com/u/shiweida/" title="入园时间：2012-11-26">5年9个月</a><br>粉丝：<a href="https://home.cnblogs.com/u/shiweida/followers/">5</a><br>关注：<a href="https://home.cnblogs.com/u/shiweida/followees/">3</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;7adc38ed-c737-e211-aa8f-842b2b196315&#39;)">+加关注</a></div><script>getFollowStatus('7adc38ed-c737-e211-aa8f-842b2b196315')</script></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/08/01&#39;);return false;">&lt;</a></td><td align="center">2018年9月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/10/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">26</td><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td class="CalOtherMonthDay" align="center">31</td><td class="CalWeekendDay" align="center">1</td></tr><tr><td class="CalWeekendDay" align="center">2</td><td align="center">3</td><td align="center">4</td><td align="center">5</td><td align="center">6</td><td align="center">7</td><td class="CalWeekendDay" align="center">8</td></tr><tr><td class="CalWeekendDay" align="center">9</td><td align="center">10</td><td align="center">11</td><td align="center">12</td><td align="center">13</td><td align="center">14</td><td class="CalWeekendDay" align="center">15</td></tr><tr><td class="CalWeekendDay" align="center">16</td><td align="center">17</td><td class="CalTodayDay" align="center">18</td><td align="center">19</td><td align="center">20</td><td align="center">21</td><td class="CalWeekendDay" align="center">22</td></tr><tr><td class="CalWeekendDay" align="center">23</td><td align="center">24</td><td align="center">25</td><td align="center">26</td><td align="center">27</td><td align="center">28</td><td class="CalWeekendDay" align="center">29</td></tr><tr><td class="CalWeekendDay" align="center">30</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="https://www.cnblogs.com/shiweida/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="https://www.cnblogs.com/shiweida/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="https://www.cnblogs.com/shiweida/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="https://www.cnblogs.com/shiweida/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="https://www.cnblogs.com/shiweida/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_toptags" class="sidebar-block">
+<div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+<li><a href="https://www.cnblogs.com/shiweida/tag/javascript/">javascript</a>(5)</li><li><a href="https://www.cnblogs.com/shiweida/tag/git/">git</a>(4)</li><li><a href="https://www.cnblogs.com/shiweida/tag/vue/">vue</a>(4)</li><li><a href="https://www.cnblogs.com/shiweida/tag/css3/">css3</a>(3)</li><li><a href="https://www.cnblogs.com/shiweida/tag/mongodb/">mongodb</a>(3)</li><li><a href="https://www.cnblogs.com/shiweida/tag/react/">react</a>(2)</li><li><a href="https://www.cnblogs.com/shiweida/tag/vs%20code/">vs code</a>(2)</li><li><a href="https://www.cnblogs.com/shiweida/tag/atom/">atom</a>(2)</li><li><a href="https://www.cnblogs.com/shiweida/tag/dos%E5%91%BD%E4%BB%A4/">dos命令</a>(1)</li><li><a href="https://www.cnblogs.com/shiweida/tag/markdown/">markdown</a>(1)</li><li><a href="https://www.cnblogs.com/shiweida/tag/">更多</a></li>
+</ul>
+</div></div><div id="sidebar_categories">
+<div id="sidebar_postarchive" class="catListPostArchive sidebar-block">
+<h3 class="catListTitle">随笔档案</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="https://www.cnblogs.com/shiweida/archive/2018/06.html">2018年6月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="https://www.cnblogs.com/shiweida/archive/2018/05.html">2018年5月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="https://www.cnblogs.com/shiweida/archive/2018/04.html">2018年4月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="https://www.cnblogs.com/shiweida/archive/2018/01.html">2018年1月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="https://www.cnblogs.com/shiweida/archive/2017/12.html">2017年12月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="https://www.cnblogs.com/shiweida/archive/2017/11.html">2017年11月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="https://www.cnblogs.com/shiweida/archive/2017/10.html">2017年10月 (8)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="https://www.cnblogs.com/shiweida/p/7692468.html#4005714">1. Re:介绍一款好用 mongodb 可视化工具</a></li>
+        <li class="recent_comment_body">mark 正好有需求</li>
+        <li class="recent_comment_author">--码先生</li>
+        <li class="recent_comment_title"><a href="https://www.cnblogs.com/shiweida/p/7692468.html#3983160">2. Re:介绍一款好用 mongodb 可视化工具</a></li>
+        <li class="recent_comment_body">11045 verbose stack SyntaxError: Unexpected end of JSON input11045 verbose stack {"_id":"electron-do......</li>
+        <li class="recent_comment_author">--乐可2016</li>
+        <li class="recent_comment_title"><a href="https://www.cnblogs.com/shiweida/p/7692468.html#3966549">3. Re:介绍一款好用 mongodb 可视化工具</a></li>
+        <li class="recent_comment_body">不知道怎么登陆的</li>
+        <li class="recent_comment_author">--天涯过者</li>
+        <li class="recent_comment_title"><a href="https://www.cnblogs.com/shiweida/p/7692468.html#3966253">4. Re:介绍一款好用 mongodb 可视化工具</a></li>
+        <li class="recent_comment_body">@天涯过者都可以,安装最新的版本就行...</li>
+        <li class="recent_comment_author">--45度微笑看世界</li>
+        <li class="recent_comment_title"><a href="https://www.cnblogs.com/shiweida/p/7692468.html#3966247">5. Re:介绍一款好用 mongodb 可视化工具</a></li>
+        <li class="recent_comment_body">nodejs用什么版本的</li>
+        <li class="recent_comment_author">--天涯过者</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="https://www.cnblogs.com/shiweida/p/7692468.html">1. 介绍一款好用 mongodb 可视化工具(24715)</a></li><li><a href="https://www.cnblogs.com/shiweida/p/8314321.html">2. Git操作切换本地帐号(629)</a></li><li><a href="https://www.cnblogs.com/shiweida/p/7675225.html">3. vue.js开发环境部署(615)</a></li><li><a href="https://www.cnblogs.com/shiweida/p/7692284.html">4. 安装MongoDB启动时报错‘发生系统错误2’的解决办法(460)</a></li><li><a href="https://www.cnblogs.com/shiweida/p/7693159.html">5. 详细图解window环境mongodb下载、安装、配置与使用(296)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="https://www.cnblogs.com/shiweida/p/7692468.html">1. 介绍一款好用 mongodb 可视化工具(12)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="https://www.cnblogs.com/shiweida/p/7692468.html">1. 介绍一款好用 mongodb 可视化工具(6)</a></li><li><a href="https://www.cnblogs.com/shiweida/p/7693159.html">2. 详细图解window环境mongodb下载、安装、配置与使用(1)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer" chromeappversion="3.0.2">
+		
+<!--done-->
+Copyright ©2018 45度微笑看世界
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body></html>
