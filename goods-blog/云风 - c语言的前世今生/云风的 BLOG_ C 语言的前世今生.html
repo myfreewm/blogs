@@ -1,0 +1,801 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0062)https://blog.codingnow.com/2010/06/c_programming_language.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" id="sixapart-standard"><head><meta http-equiv="Content-Type" content="text/html; charset=GBK">
+   
+   <meta name="generator" content="Movable Type 3.2b5">
+
+   <link rel="stylesheet" href="./云风的 BLOG_ C 语言的前世今生_files/styles-site.css" type="text/css">
+   <link rel="stylesheet" type="text/css" media="all" href="./云风的 BLOG_ C 语言的前世今生_files/mtcolorer.css">
+   <link rel="alternate" type="application/atom+xml" title="Atom" href="https://blog.codingnow.com/atom.xml">
+   <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="https://blog.codingnow.com/index.xml">
+
+   <title>云风的 BLOG: C 语言的前世今生</title>
+
+   <link rel="start" href="https://blog.codingnow.com/" title="Home">
+   <link rel="prev" href="https://blog.codingnow.com/2010/06/vfs_implemention.html" title="把 vfs 实现好了">
+   <link rel="next" href="https://blog.codingnow.com/2010/06/detect_utf-8_gbk.html" title="区分一个包含汉字的字符串是 UTF-8 还是 GBK">
+
+   <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="https://blog.codingnow.com/2010/06/c_programming_language.html"
+    trackback:ping="https://blog.codingnow.com/cgi-bin/mt/mt-tb.cgi/569"
+    dc:title="C 语言的前世今生"
+    dc:identifier="https://blog.codingnow.com/2010/06/c_programming_language.html"
+    dc:subject="语言与设计"
+    dc:description="本篇是应《程序员》杂志约稿所写。原本要求是写篇谈 C 语言的短文。4000 字之内 。我刚列了个提纲就去了 三千多字。 -_- 现放在这里，接受大家的批评指正。勿转载。..."
+    dc:creator="Cloud"
+    dc:date="2010-06-28T22:46:20+08:00" />
+</rdf:RDF>
+-->
+
+
+   
+
+   <script async="" src="./云风的 BLOG_ C 语言的前世今生_files/analytics.js.下载"></script><script type="text/javascript" src="./云风的 BLOG_ C 语言的前世今生_files/mt-site.js.下载"></script>
+</head>
+<body class="layout-one-column" onload="individualArchivesOnLoad(commenter_name)" style="">
+   <div id="container">
+      <div id="container-inner" class="pkg">
+
+         <div id="banner">
+            <div id="banner-inner" class="pkg">
+               <h1 id="banner-header"><a href="https://blog.codingnow.com/" accesskey="1">云风的 BLOG</a></h1>
+               <h2 id="banner-description">思绪来得快去得也快，偶尔会在这里停留</h2>
+            </div>
+         </div>
+
+         <div id="pagebody">
+            <div id="pagebody-inner" class="pkg">
+               <div id="alpha">
+                  <div id="alpha-inner" class="pkg">
+
+                     <p class="content-nav">
+                        <a href="https://blog.codingnow.com/2010/06/vfs_implemention.html">&#171; 把 vfs 实现好了</a> |
+                        <a href="https://blog.codingnow.com/">返回首页</a>
+                        | <a href="https://blog.codingnow.com/2010/06/detect_utf-8_gbk.html">区分一个包含汉字的字符串是 UTF-8 还是 GBK &#187;</a>
+                     </p>
+
+                     <a id="a000600"></a>
+                     <div class="entry" id="entry-600">
+                        <h3 class="entry-header">C 语言的前世今生</h3>
+                        <div class="entry-content">
+                           <div class="entry-body">
+                              <p>本篇是应《程序员》杂志约稿所写。原本要求是写篇谈 C 语言的短文。4000 字之内 。我刚列了个提纲就去了 三千多字。 -_-</p>
+
+<p>现放在这里，接受大家的批评指正。勿转载。</p>
+
+                           </div>
+                           <div id="more" class="entry-more">
+                              <hr>
+
+<h2>C 语言的前世今生</h2>
+
+<p>C 语言，从 1970 年代设计并实现之初，它就注定了带有强烈工程师文化的语言，而缺乏一些学术气息。它的许多细节设计，都带有强烈的实用化痕迹。C 语言因 UNIX 操作系统而生，是 UNIX 系统的母语。这导致在这个广泛应用的操作系统上开发，必须通过 C 语言的形式和系统进行交互。这不仅影响了 UNIX 一个平台上的软件，既而也影响了后来世界上最大的桌面系统 Windows ，以及越来越多的嵌入式平台。</p>
+
+<p>由于大部分应用软件最终都需要和操作系统打交道，所以用来开发应用软件的语言，绝大部分也需要利用 C 语言完成和操作系统的通讯。这个世界上绝大部分流行的编程语言，都选择了用 C 语言来实现其编译器或解释器，以及基础部分的运行时库。无论 C 语言设计本身有何种缺憾，在今天，它已无可取代。</p>
+
+<p>到了今天，大部分程序员不再需要逐个时间周期的去抠程序的性能。不需要刻意追求速度最快，最节省系统资源的软件。不需要写那些和系统内核紧密联系的程序。但 C 语言在此之外，依然有其重要的应用领域。我们可以把它作为对最终机器模型的高层次的统一抽象工具，而不必考虑机器环境的差异。经过 30 多年的发展，证明了 C 语言的确是对经典机器模型的最佳表述。仅仅通过增加了一个非常薄的胶合层就得到了一个清晰简洁的设计。正是这一点，使得 C 语言在计算机硬件高速发展的几十年中，一直生机勃勃。</p>
+
+<p>我们在讨论 C 语言时，其实不仅仅涉及了 C 语言本身那用三十几个保留字构成的精简的控制结构和简约的语言特征。还包括了一套对 # 号打头的预处理部分（尤其是基于文本替换的宏处理），以及某些惯用的源代码组织方式（例如：所有的接口定义被定义在后缀为 h 的文件中，并通过预处理方式替换进源代码），和基本的程序库。</p>
+
+<p>这几部分语言核心之外的部分相对独立。以至于使用 C 语言开发并不一定使用标准化的那些东西。C 语言对运行时环境的依赖是非常小的。</p>
+
+<p>而编译预处理器又使得语言富有弹性，甚至可以写出违背 C 语言哲学的代码。著名的 IOCCC 大赛展示了许多常人无法理解的 C 代码。但实际上，C 语言主张代码清晰，表里如一。开发者和维护者都能很容易的预测每一行代码背后的行为。避免存在一些阴暗的角落藏着一些罕见的用法导致程序运行时出现诡异的行为。C 语言在发展过程中一直坚持着最小意外原则。而这一点，正是 C 语言的一个著名发展分支 C++ 所偏离的东西。</p>
+
+<p>C 语言并不是绝对意义上最快的语言。但是它的效率非常好，在切合大部分机器模型并给出统一抽象的基础上，几乎没有其它语言做的更好了。这也是 C 语言哲学的一部分：在统一硬件抽象模型的基础上，尽可能的利用所在硬件环境的一切资源。有时候，C 语言程序员会走向某种极端。追求语言细节的优化，觉得某种代码的组织方式会比另一种方式更高效。但几乎总是错的。优化取决于对具体硬件的理解，以及对编译器如何翻译这些代码的了解。但这正是设计 C 语言想避免的东西。我们不必去争论在语句级上每行代码精确开销的优劣。</p>
+
+<p>同时，C 语言的另一设计哲学就是让每行 C 代码尽量准确的对应相当数量的目标机器码。这使得程序员可以更为容易的理解程序的运行过程。让程序员脑海里可以实时地做一个源代码到最终控制流程的映射。基于这个思想，C 语言一直没有增加对结构进行运算的操作符（而 C++ 中把类或结构模拟成原生类型的做法相当普遍）。甚至于 inline 关键字也迟迟没有被标准化（inline 出现在 C99 标准中，而这个最新的 C 语言标准并没有被广泛接受），正是因为它某种程度破坏了这一点。</p>
+
+<p>C 语言在坚持以上几点理念时，并非突出某个方面（比如追求性能），而是同时兼顾的。</p>
+
+<p>C 语言并不是这个世界上唯一的编程语言，可惜的是，不是所有程序员都认识到了这点。对于把 C 语言作为自己唯一开发语言的程序员来说，很有必要开拓自己的眼界，这样反过来才能更为清晰的理解 C 语言的内在精神。并不是说，某某语言本身是用 C 语言来实现，那么 C 语言就可以以同样的方式，解决那种语言解决的问题（甚至更为高效）。一些 C 语言中的概念，到了另一种语言中，很可能用完全不同的方式展现出来。正如自然语言会影响人的思维方式一样，编程语言一样会影响人对某种算法的编码形式。在 C 里，我们总以为某些写法是自然而然的，但换了种语言却很可能并不尽然。</p>
+
+<p>无论如何 C 语言的语法和设计影响了许多其它语言。最为彻底的是 C++ 。以及大多数程序员都能叫的出名字的一些流行语言：Java ， PHP ，Javascript，Perl ，C#，D，Objective-C 等等。 这些给人造成一种错觉，新的语言取代了旧的，对老的语言做了改良和完善。最广泛传播的观点是，C++ 是 C 的一个超集，它能做所有 C 能做的所有事情，且能做的更好。持有这种观点的 C++ 程序员们甚至向把已有的各种 C 代码用 C++ 重新实现。但实际上，C 和 C++ 更应该被看成是相互平等的存在。C++ 更像是一种借用了几乎全部 C 语法（但还是有细微差异）的全新语言。它们在很多方面都有设计理念上的差异。C++ 企图完全兼容 C 的语法却不想完全继承 C 语言的理念，这使它背负了巨大的包袱。而 C 的另一个继任者：Objective-C ，抛弃了一些东西，则显得清爽一些。</p>
+
+<p>回顾 C++ 出现的时代背景在于把面向对象当成解决复杂问题的“银弹”的年代。这使得 C++ 在发明之初，迅速的占领了大量原本是 C 语言的市场，甚至被看成是 C 语言的替代品。但 C++ 的拥趸们并没有等到这一天。历史证明，面向对象也不是“银弹”、最近十年，C++ 的粉丝们从 C++ 语言的犄角旮旯里挖掘出来的各种武器，让 C++ 语言变成了包含多种编程范式的巨无霸。却并没有让解决问题变得更容易。这并不完全是语言的问题，可能有很大程度上是面向对象等开发方法本身的问题。这也证明了 C 语言保持自身的简洁正是其生机昂然的源泉。</p>
+
+<p>和浩如烟海的 C++ 书籍相比较。如果你已经是程序员，但还不了解 C 语言的话。学习 C 语言，只需要读一本书，而这本书没有第二选择，就是经典的《The C Programming Language》(K&amp;R)。薄薄的一本就讲透了语言的方方面面。可惜的是，C 语言过于注重对机器模型的抽象，并不适合用来程序员入门。尤其是在国内的教材市场，充斥着大量糟糕的 C 语言教材。在这些拙劣的教材中，甚至把开发工具（比如特定的 C 语言开发集成环境）和特定的硬件环境（甚至是过时的 8086 内存模型）与语言教学混为一谈。</p>
+
+<p>对于 C 语言不是母语的程序员来说，有充分的理由去学习一下 C 语言。那是低投入，高产出的。它会使你学会在硬件层次上思考问题（这或许对你是一个新的思维角度）。而且 C 语言已经非常稳定，不会再有（它本身也不希望有）大的变化，不用担心学到的知识会过时。C 语言在 1990 年制订出一个现在通行的标准（ C90 ）以来，在 C 的主流开发社区中几乎没有变过了。虽然，从 1999 年开始，C 语言委员会几经修订 C 语言的新标准（ C99 ），但似乎并不被广泛接受。虽然有很大程度上，这是源于世界上最大的 C/C++ 商业编译器提供商微软对其不感兴趣。可在开源界，即使有 GNU C 对 C 语言新标准的不断推动，那些实际用 C 语言做开发的大佬们还是纷纷表示，新的标准还不是很成熟。新的特性也不是特别有必要。</p>
+
+<p>笔者用 C99 开发有一些年头，但也只使用了其中一个子集，不太敢在正式项目中完全推广。至于 C 语言近年来的发展，我个人比较欣赏苹果公司对 C 语言添加的 blocks 扩展以用来实现 closure 。但并不看好这些新特性会迅速融入 C 语言社区。</p>
+
+<p>C 语言从语言角度上讲，最大缺陷在于要求程序员自己去做内存管理。用 C 语言去处理复杂的数据结构，程序员大部分的时间都花在了这上面，并且滋生了无数 bug 。调试 C 程序变成了一项独立于编写 C 程序的技能。防止缓冲区溢出、防止数据读写越界、正确的动态回收内存、避免悬空指针，这些在大部分语言看起来不可思议的关注点，在 C 语言程序员眼里变得稀松平常。甚至是衡量 C 程序员技能经验水平的重要标志。可要知道，这些和具体问题的解决过程无关。</p>
+
+<p>也有人试图在 C 语言层面解决这个问题，例如以库形式提供垃圾回收的机制（笔者也曾做过类似尝试）。但 C 语言本身的设计使它无法成为一个完美的解决方案。同样的问题也存在于 C++ 。现在看来，不对语言做大的改造，很难回避。可改造本身又违背了 C 语言一贯的哲学。C 语言的发明人之一的 Ken Thompson 近年来参与了新的 Go 语言的设计和实现，可以看成从另一角度对新的程序开发语言的尝试，可那已经不是 C 。</p>
+
+<p>这个问题在一定程度上也促使了 java 的诞生。Java 采用了虚拟机和字节码的方式改造了底层的机器模型。并在底层模型的基础上加入了垃圾回收机制。并在语言层面取消了指针。在 C 语言的原生地，也有更多的动态（脚本）语言出现。先是有 awk 这样的简易语言，后有 perl ，再是 python 等的流行。在 Unix 风格下，程序员倾向于为特定领域设计特定的语言。C 和 Unix 的设计哲学是一体的。它们都鼓励清晰的模块化设计。让模块之间独立，再用薄的胶合层联系起来。脚本语言在现代类 Unix 系统上大量出现，并充当这种粘合工作就是一种发展必然。而原本的充当粘合部分的脚本语言，也逐步发展起来，远远超出脚本的用途范畴。做为程序员，尤其是 C 程序员，必须对它们有所了解并掌握其中的一些，才能适应现代的挑战。</p>
+
+<p>我们不应该指望一门语言解决所有的问题。可至于 C 语言本身，它将在很长的一段时间，带着它的优雅和缺陷，继续扮演它在计算机世界中重要的角色。</p>
+
+<hr>
+
+<p>ps. 命题作文真难写啊。</p>
+
+                           </div>
+                        </div>
+                        <p class="entry-footer">
+                           <span class="post-footers">云风 提交于 June 28, 2010 10:46 PM</span> <span class="separator">|</span> <a class="permalink" href="https://blog.codingnow.com/2010/06/c_programming_language.html">固定链接</a>
+                        </p>
+                     </div>
+
+                     
+
+                                          <div id="comments" class="comments">
+                        <div class="comments-content">
+                                                      <h3 class="comments-header">Comments</h3>
+                           <a id="c047161"></a>
+                           <div class="comment" id="comment-47161">
+                              <div class="comment-content">
+                                 <p>c/c++视频教程<br>
+http://www.sucaihuo.com/video/197-0-0</p>
+                              </div>
+                              <p class="comment-footer">
+                                 Posted by:
+                                  <a href="http://www.sucaihuo.com/" rel="nofollow">素材火</a>  | (45) 
+                                 <a href="https://blog.codingnow.com/2010/06/c_programming_language.html#comment-47161">November 27, 2017 11:05 AM</a> 
+                              </p>
+                           </div>
+                                                      
+                           <a id="c046060"></a>
+                           <div class="comment" id="comment-46060">
+                              <div class="comment-content">
+                                 <p>正在学习C。刚刚开始，有幸看到了这篇文章。谢谢</p>
+                              </div>
+                              <p class="comment-footer">
+                                 Posted by:
+                                  <a href="http://www.toogooo.com/" rel="nofollow">www.toogooo.com</a>  | (44) 
+                                 <a href="https://blog.codingnow.com/2010/06/c_programming_language.html#comment-46060">September 29, 2015 10:28 PM</a> 
+                              </p>
+                           </div>
+                                                      
+                           <a id="c045527"></a>
+                           <div class="comment" id="comment-45527">
+                              <div class="comment-content">
+                                 <p>其实C中已经体现面向对象的思想了，不过只是很皮毛级的面向对象/ 听一个学长介绍的你的博客。</p>
+                              </div>
+                              <p class="comment-footer">
+                                 Posted by:
+                                  mark  | (43) 
+                                 <a href="https://blog.codingnow.com/2010/06/c_programming_language.html#comment-45527">December 29, 2014 12:14 AM</a> 
+                              </p>
+                           </div>
+                                                      
+                           <a id="c044900"></a>
+                           <div class="comment" id="comment-44900">
+                              <div class="comment-content">
+                                 <p>云风前辈,受你的教诲我也重回C.<br>
+现在用C写代码,感觉很爽.简单粗暴</p>
+                              </div>
+                              <p class="comment-footer">
+                                 Posted by:
+                                  爆超  | (42) 
+                                 <a href="https://blog.codingnow.com/2010/06/c_programming_language.html#comment-44900">March 20, 2014 03:46 PM</a> 
+                              </p>
+                           </div>
+                                                      
+                           <a id="c044495"></a>
+                           <div class="comment" id="comment-44495">
+                              <div class="comment-content">
+                                 <p> Reply to  halida <br>
+我本人一直想定义一种新语言，从C++中摘录个别语言特性融合到C里。连名字都想好了，叫CS (c with stl)<br>
+当然，这应该是个不切实际的幻想罢了。。。<br>
+(http://blog.codingnow.com/2010/06/c_programming_language.html#comment-39119)</p>
+                              </div>
+                              <p class="comment-footer">
+                                 Posted by:
+                                  <a href="http://endle.gitcafe.com/" rel="nofollow">endle</a>  | (41) 
+                                 <a href="https://blog.codingnow.com/2010/06/c_programming_language.html#comment-44495">December 12, 2013 11:46 PM</a> 
+                              </p>
+                           </div>
+                                                      
+                           <a id="c043919"></a>
+                           <div class="comment" id="comment-43919">
+                              <div class="comment-content">
+                                 <p>我觉得语言只是工具，我们好好利用就行了</p>
+                              </div>
+                              <p class="comment-footer">
+                                 Posted by:
+                                  <a href="http://rongmayisheng.com/" rel="nofollow">weager</a>  | (40) 
+                                 <a href="https://blog.codingnow.com/2010/06/c_programming_language.html#comment-43919">May  3, 2013 09:41 PM</a> 
+                              </p>
+                           </div>
+                                                      
+                           <a id="c042596"></a>
+                           <div class="comment" id="comment-42596">
+                              <div class="comment-content">
+                                 <p>c语言太难了，一直没学好</p>
+                              </div>
+                              <p class="comment-footer">
+                                 Posted by:
+                                  <a href="http://www.weblai.com/" rel="nofollow">义乌网站建设</a>  | (39) 
+                                 <a href="https://blog.codingnow.com/2010/06/c_programming_language.html#comment-42596">April 17, 2012 05:18 PM</a> 
+                              </p>
+                           </div>
+                                                      
+                           <a id="c041558"></a>
+                           <div class="comment" id="comment-41558">
+                              <div class="comment-content">
+                                 <p>C语言之所以是今天这个样子，是在硬件的限制的基础上综合了人的理解力和程序性能等设计因素，文中没有对这一点进行深入分析，倒是扯到与C++等 语言的对比上去。引用文首，此文在设计并实现之初，它就注定了带有强烈工程师文化的语言，而缺乏一些学术气息。</p>
+                              </div>
+                              <p class="comment-footer">
+                                 Posted by:
+                                  <a href="http://arttech.us/" rel="nofollow">nakeman</a>  | (38) 
+                                 <a href="https://blog.codingnow.com/2010/06/c_programming_language.html#comment-41558">October 17, 2011 10:03 PM</a> 
+                              </p>
+                           </div>
+                                                      
+                           <a id="c040223"></a>
+                           <div class="comment" id="comment-40223">
+                              <div class="comment-content">
+                                 <p>一个大二学生的疑惑<br>
+您好，今天看了您的一片文章《C语言的前世今生》，感触很深，对于您的资历更是顶礼膜拜。我现在还是一名在校学生，在学校学过很多的专业基础课，也学习了一些语言，有人说一个真正的程序员和“码农”的区别就在于这些基础课，所以我在学习专业基础课的时候就很想明白学这些课程的作用，但我无论学习用那一种语言编程都无法体会到基础课的作用，唯有C语言，让或多或少的感觉到一些东西，我想深入的学习C语言，但现在只是接受了大学的关于C语言的皮毛教育，我不知道应该怎么去进一步的学习，还请云风前辈指点一二，晚辈谢过了。</p>
+                              </div>
+                              <p class="comment-footer">
+                                 Posted by:
+                                  中断  | (37) 
+                                 <a href="https://blog.codingnow.com/2010/06/c_programming_language.html#comment-40223">March 25, 2011 07:18 PM</a> 
+                              </p>
+                           </div>
+                                                      
+                           <a id="c039606"></a>
+                           <div class="comment" id="comment-39606">
+                              <div class="comment-content">
+                                 <p>同感，简单就是王道。c++，java都是c辐射出去的试验品，由于不符合其基本原则，都要被淘汰。目前看来php,lua，js 符合c的基本哲学，看好其生命周期。</p>
+                              </div>
+                              <p class="comment-footer">
+                                 Posted by:
+                                  if  | (36) 
+                                 <a href="https://blog.codingnow.com/2010/06/c_programming_language.html#comment-39606">December  5, 2010 11:39 AM</a> 
+                              </p>
+                           </div>
+                                                      
+                           <a id="c039603"></a>
+                           <div class="comment" id="comment-39603">
+                              <div class="comment-content">
+                                 <p>其实怎么说呢，在不得不处理大量临时指针的时候，C根本没办法做得跟C++一样容易阅读。</p>
+
+<p>这只能说明作者信不过手下的C++能力而已，大概就是这样吧。跟linus是一样的。</p>
+                              </div>
+                              <p class="comment-footer">
+                                 Posted by:
+                                  <a href="http://www.cppblog.com/vczh" rel="nofollow">vczh</a>  | (35) 
+                                 <a href="https://blog.codingnow.com/2010/06/c_programming_language.html#comment-39603">December  4, 2010 01:06 PM</a> 
+                              </p>
+                           </div>
+                                                      
+                           <a id="c039129"></a>
+                           <div class="comment" id="comment-39129">
+                              <div class="comment-content">
+                                 <p>请问什么叫过时的8086内存模型？</p>
+                              </div>
+                              <p class="comment-footer">
+                                 Posted by:
+                                  Anonymous  | (34) 
+                                 <a href="https://blog.codingnow.com/2010/06/c_programming_language.html#comment-39129">August 10, 2010 04:08 AM</a> 
+                              </p>
+                           </div>
+                                                      
+                           <a id="c039119"></a>
+                           <div class="comment" id="comment-39119">
+                              <div class="comment-content">
+                                 <p>基于这个思想，C 语言一直没有增加对结构进行操作的操作符。<br>
+--------------------<br>
+结构体赋值不算？<br>
+--------------------<br>
+可以通过机器语言的块拷贝功能完成。<br>
+性能不会有太多的区别。</p>
+                              </div>
+                              <p class="comment-footer">
+                                 Posted by:
+                                  halida  | (33) 
+                                 <a href="https://blog.codingnow.com/2010/06/c_programming_language.html#comment-39119">August  6, 2010 01:27 PM</a> 
+                              </p>
+                           </div>
+                                                      
+                           <a id="c039113"></a>
+                           <div class="comment" id="comment-39113">
+                              <div class="comment-content">
+                                 <p>最近关注了 C++0X没有？我在考虑这样一种可能性，就是最大限度淡化C++中的OO部分，是否能够剪裁出一种真的比C好一点的语言——表达能力更强，而效率并不落后很多。Stepanov的 Elements of Programming 做了这方面的探索，不过我还没时间仔细研究。</p>
+                              </div>
+                              <p class="comment-footer">
+                                 Posted by:
+                                  myan  | (32) 
+                                 <a href="https://blog.codingnow.com/2010/06/c_programming_language.html#comment-39113">August  5, 2010 12:02 PM</a> 
+                              </p>
+                           </div>
+                                                      
+                           <a id="c039022"></a>
+                           <div class="comment" id="comment-39022">
+                              <div class="comment-content">
+                                 <p>有点象unix编程艺术浓缩版</p>
+                              </div>
+                              <p class="comment-footer">
+                                 Posted by:
+                                  Anonymous  | (31) 
+                                 <a href="https://blog.codingnow.com/2010/06/c_programming_language.html#comment-39022">July  9, 2010 12:58 PM</a> 
+                              </p>
+                           </div>
+                                                      
+                           <a id="c039018"></a>
+                           <div class="comment" id="comment-39018">
+                              <div class="comment-content">
+                                 <p>适合自己用的语言就行了</p>
+                              </div>
+                              <p class="comment-footer">
+                                 Posted by:
+                                  <a href="http://www.boxmv.com/" rel="nofollow">波士</a>  | (30) 
+                                 <a href="https://blog.codingnow.com/2010/06/c_programming_language.html#comment-39018">July  6, 2010 10:39 AM</a> 
+                              </p>
+                           </div>
+                                                      
+                           <a id="c039014"></a>
+                           <div class="comment" id="comment-39014">
+                              <div class="comment-content">
+                                 <p>我喜欢c的编译速度极快!</p>
+                              </div>
+                              <p class="comment-footer">
+                                 Posted by:
+                                  lichking  | (29) 
+                                 <a href="https://blog.codingnow.com/2010/06/c_programming_language.html#comment-39014">July  3, 2010 08:32 PM</a> 
+                              </p>
+                           </div>
+                                                      
+                           <a id="c039013"></a>
+                           <div class="comment" id="comment-39013">
+                              <div class="comment-content">
+                                 <p>很多国外第一门编程课大概是lisp或是java, lisp是因为编程的本质思想, java是因为作为工程语言特性的一个最广泛的代表;</p>
+                              </div>
+                              <p class="comment-footer">
+                                 Posted by:
+                                  lichking  | (28) 
+                                 <a href="https://blog.codingnow.com/2010/06/c_programming_language.html#comment-39013">July  3, 2010 08:31 PM</a> 
+                              </p>
+                           </div>
+                                                      
+                           <a id="c039012"></a>
+                           <div class="comment" id="comment-39012">
+                              <div class="comment-content">
+                                 <p>在他们america , lisp才是程序员的母语</p>
+                              </div>
+                              <p class="comment-footer">
+                                 Posted by:
+                                  lichking  | (27) 
+                                 <a href="https://blog.codingnow.com/2010/06/c_programming_language.html#comment-39012">July  3, 2010 08:28 PM</a> 
+                              </p>
+                           </div>
+                                                      
+                           <a id="c039011"></a>
+                           <div class="comment" id="comment-39011">
+                              <div class="comment-content">
+                                 <p>这样的翻译体文章如果不适当的用主题来分段的话看起来是相当枯燥的。</p>
+                              </div>
+                              <p class="comment-footer">
+                                 Posted by:
+                                  ichenq  | (26) 
+                                 <a href="https://blog.codingnow.com/2010/06/c_programming_language.html#comment-39011">July  2, 2010 11:52 AM</a> 
+                              </p>
+                           </div>
+                                                      
+                           <a id="c039010"></a>
+                           <div class="comment" id="comment-39010">
+                              <div class="comment-content">
+                                 <p>写的非常客观。</p>
+                              </div>
+                              <p class="comment-footer">
+                                 Posted by:
+                                  <a href="http://blog.csdn.net/albert_lee" rel="nofollow">albertlee</a>  | (25) 
+                                 <a href="https://blog.codingnow.com/2010/06/c_programming_language.html#comment-39010">July  1, 2010 07:09 PM</a> 
+                              </p>
+                           </div>
+                                                      
+                           <a id="c039009"></a>
+                           <div class="comment" id="comment-39009">
+                              <div class="comment-content">
+                                 <p>语言始终只是一种工具，但是一个最基础的工具。我想大多人都认为最适合自己的工具才是最好的。<br>
+相信那些始终选择C++的人，正是因为C++它提供了各种解决问题的方式。在大多情况下，都可以使用所熟悉的C++。<br>
+正是和云风所认为的一门语言不应该去解决所有问题相违背的。</p>
+                              </div>
+                              <p class="comment-footer">
+                                 Posted by:
+                                  kojiyijian  | (24) 
+                                 <a href="https://blog.codingnow.com/2010/06/c_programming_language.html#comment-39009">July  1, 2010 02:57 PM</a> 
+                              </p>
+                           </div>
+                                                      
+                           <a id="c039008"></a>
+                           <div class="comment" id="comment-39008">
+                              <div class="comment-content">
+                                 <p>ls的有位哥子说c是程序员的母语。</p>
+
+<p>对呀，它像是很多语言的元字母。正是因为有了拉丁字母,才有<br>
+了整个拉丁语系。当然我们不可否认诸如汉文之类的其它语言。</p>
+
+<p>我们也不能忽视其它计算语言，它们都有它存在的价值，无论历史还是使用上。</p>
+
+<p>历史总是向前的，新旧更迭是不变的法则，c终究有它成为过去的那天。</p>
+
+<p>不过，生在这个时代，我们都应该感激它的出现，虔诚地。</p>
+                              </div>
+                              <p class="comment-footer">
+                                 Posted by:
+                                  T  | (23) 
+                                 <a href="https://blog.codingnow.com/2010/06/c_programming_language.html#comment-39008">July  1, 2010 05:04 AM</a> 
+                              </p>
+                           </div>
+                                                      
+                           <a id="c039007"></a>
+                           <div class="comment" id="comment-39007">
+                              <div class="comment-content">
+                                 <p>ls的有位哥子说c是程序员的母语。</p>
+
+<p>对呀，它像是很多语言的元字母。正是因为有了拉丁字母,才有<br>
+了整个拉丁语系。当然我们不可否认诸如汉文之类的其它语言。</p>
+
+<p>我们也不能忽视其它计算语言，它们都有它存在的价值，无论历史还是使用上。</p>
+
+<p>历史总是向前的，新旧更迭是不变的法则，c终究有它成为过去的那天。</p>
+
+<p>不过，生在这个时代，我们都应该感激它的出现，虔诚地。</p>
+                              </div>
+                              <p class="comment-footer">
+                                 Posted by:
+                                  T  | (22) 
+                                 <a href="https://blog.codingnow.com/2010/06/c_programming_language.html#comment-39007">July  1, 2010 05:01 AM</a> 
+                              </p>
+                           </div>
+                                                      
+                           <a id="c039006"></a>
+                           <div class="comment" id="comment-39006">
+                              <div class="comment-content">
+                                 <p>我也很喜欢C 虽然规模大了 有点乱 但是C++更乱，而且C++对开发者要求很高，我看过的C++代码，大部分还真不如C； 不管怎么说，完成任务，用啥都无所谓</p>
+                              </div>
+                              <p class="comment-footer">
+                                 Posted by:
+                                  Anonymous  | (21) 
+                                 <a href="https://blog.codingnow.com/2010/06/c_programming_language.html#comment-39006">June 30, 2010 11:38 PM</a> 
+                              </p>
+                           </div>
+                                                      
+                           <a id="c039005"></a>
+                           <div class="comment" id="comment-39005">
+                              <div class="comment-content">
+                                 <p>几乎任何语言用习惯了都挺愉悦的,打算带着c++的缺陷和懒惰，继续让它作为我主要的编程手段吧:)</p>
+                              </div>
+                              <p class="comment-footer">
+                                 Posted by:
+                                  lichking  | (20) 
+                                 <a href="https://blog.codingnow.com/2010/06/c_programming_language.html#comment-39005">June 30, 2010 11:01 PM</a> 
+                              </p>
+                           </div>
+                                                      
+                           <a id="c039003"></a>
+                           <div class="comment" id="comment-39003">
+                              <div class="comment-content">
+                                 <p>我觉得吧，这个命题很广泛~</p>
+                              </div>
+                              <p class="comment-footer">
+                                 Posted by:
+                                  海豚  | (19) 
+                                 <a href="https://blog.codingnow.com/2010/06/c_programming_language.html#comment-39003">June 30, 2010 12:57 PM</a> 
+                              </p>
+                           </div>
+                                                      
+                           <a id="c039002"></a>
+                           <div class="comment" id="comment-39002">
+                              <div class="comment-content">
+                                 <p>想起当初学C和C++就头痛。</p>
+                              </div>
+                              <p class="comment-footer">
+                                 Posted by:
+                                  <a href="http://www.oicqzone.com/" rel="nofollow">QQ农场</a>  | (18) 
+                                 <a href="https://blog.codingnow.com/2010/06/c_programming_language.html#comment-39002">June 30, 2010 11:10 AM</a> 
+                              </p>
+                           </div>
+                                                      
+                           <a id="c038998"></a>
+                           <div class="comment" id="comment-38998">
+                              <div class="comment-content">
+                                 <p>但是我不喜欢基于头文件的C，要是能基于二进制符号多好</p>
+                              </div>
+                              <p class="comment-footer">
+                                 Posted by:
+                                  sherlockmao  | (17) 
+                                 <a href="https://blog.codingnow.com/2010/06/c_programming_language.html#comment-38998">June 29, 2010 09:40 PM</a> 
+                              </p>
+                           </div>
+                                                      
+                           <a id="c038993"></a>
+                           <div class="comment" id="comment-38993">
+                              <div class="comment-content">
+                                 <p>这类文章我都看腻了，你还写，有没点新意。</p>
+                              </div>
+                              <p class="comment-footer">
+                                 Posted by:
+                                  <a href="http://arttech.us/" rel="nofollow">nakeman</a>  | (16) 
+                                 <a href="https://blog.codingnow.com/2010/06/c_programming_language.html#comment-38993">June 29, 2010 04:03 PM</a> 
+                              </p>
+                           </div>
+                                                      
+                           <a id="c038992"></a>
+                           <div class="comment" id="comment-38992">
+                              <div class="comment-content">
+                                 <p>程序员们甚至向把已有个各种 C 代码用 C++ 重新实现 &gt;&gt;&gt;<br>
+程序员们甚至向把已有的各种 C 代码用 C++ 重新实现</p>
+                              </div>
+                              <p class="comment-footer">
+                                 Posted by:
+                                  maxint  | (15) 
+                                 <a href="https://blog.codingnow.com/2010/06/c_programming_language.html#comment-38992">June 29, 2010 12:45 PM</a> 
+                              </p>
+                           </div>
+                                                      
+                           <a id="c038991"></a>
+                           <div class="comment" id="comment-38991">
+                              <div class="comment-content">
+                                 <p>@Kevin</p>
+
+<p>我是想说加减这样的运算符，不过表达不清。我认为做数据复制用的赋值操作，并不违背我想表达的意思。</p>
+
+<p>@tek-life</p>
+
+<p>因为写的时候翻了几本书，一不小心就写成翻译体了 :( </p>
+                              </div>
+                              <p class="comment-footer">
+                                 Posted by:
+                                  Cloud  | (14) 
+                                 <a href="https://blog.codingnow.com/2010/06/c_programming_language.html#comment-38991">June 29, 2010 12:30 PM</a> 
+                              </p>
+                           </div>
+                                                      
+                           <a id="c038990"></a>
+                           <div class="comment" id="comment-38990">
+                              <div class="comment-content">
+                                 <p>让程序员脑海里可以失实的做一个源代码到最终控制流程的映射 &gt;&gt;<br>
+让程序员脑海里可以实时的做一个源代码到最终控制流程的映射</p>
+
+<p>??</p>
+                              </div>
+                              <p class="comment-footer">
+                                 Posted by:
+                                  韩拓  | (13) 
+                                 <a href="https://blog.codingnow.com/2010/06/c_programming_language.html#comment-38990">June 29, 2010 12:13 PM</a> 
+                              </p>
+                           </div>
+                                                      
+                           <a id="c038989"></a>
+                           <div class="comment" id="comment-38989">
+                              <div class="comment-content">
+                                 <p>基于这个思想，C 语言一直没有增加对结构进行操作的操作符。<br>
+--------------------<br>
+结构体赋值不算？</p>
+                              </div>
+                              <p class="comment-footer">
+                                 Posted by:
+                                  <a href="http://hi.baidu.com/yk103" rel="nofollow">Kevin</a>  | (12) 
+                                 <a href="https://blog.codingnow.com/2010/06/c_programming_language.html#comment-38989">June 29, 2010 11:54 AM</a> 
+                              </p>
+                           </div>
+                                                      
+                           <a id="c038988"></a>
+                           <div class="comment" id="comment-38988">
+                              <div class="comment-content">
+                                 <p>&lt;h1&gt;这文章促使我去看那本书...&lt;/h1&gt;<br>
+</p>
+                              </div>
+                              <p class="comment-footer">
+                                 Posted by:
+                                  <a href="http://blog.yaofur.com/" rel="nofollow">Fur</a>  | (11) 
+                                 <a href="https://blog.codingnow.com/2010/06/c_programming_language.html#comment-38988">June 29, 2010 11:41 AM</a> 
+                              </p>
+                           </div>
+                                                      
+                           <a id="c038987"></a>
+                           <div class="comment" id="comment-38987">
+                              <div class="comment-content">
+                                 <p>读起来有点涩，像是从英语翻译过来的感觉。</p>
+                              </div>
+                              <p class="comment-footer">
+                                 Posted by:
+                                  <a href="http://tek-life.org/" rel="nofollow">tek-life</a>  | (10) 
+                                 <a href="https://blog.codingnow.com/2010/06/c_programming_language.html#comment-38987">June 29, 2010 10:56 AM</a> 
+                              </p>
+                           </div>
+                                                      
+                           <a id="c038986"></a>
+                           <div class="comment" id="comment-38986">
+                              <div class="comment-content">
+                                 <p>&gt;&gt;让程序员脑海里可以失实的做一个源代码到最终控制流程的映射。</p>
+
+<p>这里“失实”应该是“实时”吧？</p>
+                              </div>
+                              <p class="comment-footer">
+                                 Posted by:
+                                  <a href="http://cnblogs.com/seasonlee" rel="nofollow">SeasonLee</a>  | (9) 
+                                 <a href="https://blog.codingnow.com/2010/06/c_programming_language.html#comment-38986">June 29, 2010 10:36 AM</a> 
+                              </p>
+                           </div>
+                                                      
+                           <a id="c038985"></a>
+                           <div class="comment" id="comment-38985">
+                              <div class="comment-content">
+                                 <p>完全信服云风大牛的观点。虽然我只是个爱好者，甚至C语言还没完全掌握，不过特别喜欢C的精简，没有冗余的东西。它在许多机器上都很容易实现。</p>
+                              </div>
+                              <p class="comment-footer">
+                                 Posted by:
+                                  大笨猫同学  | (8) 
+                                 <a href="https://blog.codingnow.com/2010/06/c_programming_language.html#comment-38985">June 29, 2010 10:24 AM</a> 
+                              </p>
+                           </div>
+                                                      
+                           <a id="c038984"></a>
+                           <div class="comment" id="comment-38984">
+                              <div class="comment-content">
+                                 <p>恩，C++的理念是给使用者尽量丰富的选择……即使C++目前的很多问题是使用过程中的问题，那么就不适合用这个来比较语言本身。C++的各种误用或滥用，也许是本身设计的问题，但考虑到这些设计都是大量人权衡后的结果，所以我更倾向于认为这些误用和滥用是C++教学和社区时尚的问题。C++可以看作各种工具的集合，而不是一个作为整体的单个的工具。</p>
+                              </div>
+                              <p class="comment-footer">
+                                 Posted by:
+                                  sjinny  | (7) 
+                                 <a href="https://blog.codingnow.com/2010/06/c_programming_language.html#comment-38984">June 29, 2010 09:40 AM</a> 
+                              </p>
+                           </div>
+                                                      
+                           <a id="c038983"></a>
+                           <div class="comment" id="comment-38983">
+                              <div class="comment-content">
+                                 <p>C语言是程序员的母语啊，不管什么背景的，基本都会C语言</p>
+                              </div>
+                              <p class="comment-footer">
+                                 Posted by:
+                                  Anonymous  | (6) 
+                                 <a href="https://blog.codingnow.com/2010/06/c_programming_language.html#comment-38983">June 29, 2010 09:26 AM</a> 
+                              </p>
+                           </div>
+                                                      
+                           <a id="c038982"></a>
+                           <div class="comment" id="comment-38982">
+                              <div class="comment-content">
+                                 <p>调试 C 程序变成了一项独立于编写 C 程序的独立技能。</p>
+
+<p>两个独立可以去掉一个 :)</p>
+                              </div>
+                              <p class="comment-footer">
+                                 Posted by:
+                                  Ted   | (5) 
+                                 <a href="https://blog.codingnow.com/2010/06/c_programming_language.html#comment-38982">June 29, 2010 09:14 AM</a> 
+                              </p>
+                           </div>
+                                                      
+                           <a id="c038981"></a>
+                           <div class="comment" id="comment-38981">
+                              <div class="comment-content">
+                                 <p>让程序员脑海里可以失实的做一个源代码到最终控制流程的映射----失实--&gt;实时？？</p>
+                              </div>
+                              <p class="comment-footer">
+                                 Posted by:
+                                  david  | (4) 
+                                 <a href="https://blog.codingnow.com/2010/06/c_programming_language.html#comment-38981">June 29, 2010 08:59 AM</a> 
+                              </p>
+                           </div>
+                                                      
+                           <a id="c038980"></a>
+                           <div class="comment" id="comment-38980">
+                              <div class="comment-content">
+                                 <p>如果以介绍C为标准来评价，这篇已经写得非常好了。要说有什么缺点，那就是逻辑清晰内容扎实，但趣味性有些不足。</p>
+
+<p>或许仔细问问编辑需要一篇什么样的东西比较好？《程序员》我没看过，听名字蛮专业的感觉，这一篇可能浅了些。</p>
+                              </div>
+                              <p class="comment-footer">
+                                 Posted by:
+                                  oCameLo  | (3) 
+                                 <a href="https://blog.codingnow.com/2010/06/c_programming_language.html#comment-38980">June 29, 2010 02:27 AM</a> 
+                              </p>
+                           </div>
+                                                      
+                           <a id="c038979"></a>
+                           <div class="comment" id="comment-38979">
+                              <div class="comment-content">
+                                 <p>纯粹写历史总是难的，众口难调，各种立场。</p>
+
+<p>为什么不考虑一下写C语言在各个年代的主要作用或者应用场合，以及不同年代的人对C的看法呢？<br>
+如果是有深度的读者，自然会从不同的评价中阵中了解C语言的价值。</p>
+
+<p>感觉这里面试图带出的信息太多，看完之后很难有什么记得住。</p>
+                              </div>
+                              <p class="comment-footer">
+                                 Posted by:
+                                  Anonymous  | (2) 
+                                 <a href="https://blog.codingnow.com/2010/06/c_programming_language.html#comment-38979">June 29, 2010 01:19 AM</a> 
+                              </p>
+                           </div>
+                                                      
+                           <a id="c038978"></a>
+                           <div class="comment" id="comment-38978">
+                              <div class="comment-content">
+                                 <p>前世、今生。为什么不谈谈后世呢？你对C太多偏爱了，对C++又太多偏见了</p>
+                              </div>
+                              <p class="comment-footer">
+                                 Posted by:
+                                  Anonymous  | (1) 
+                                 <a href="https://blog.codingnow.com/2010/06/c_programming_language.html#comment-38978">June 29, 2010 12:50 AM</a> 
+                              </p>
+                           </div>
+                           
+                        </div>
+
+                         
+                        <form method="post" action="https://blog.codingnow.com/cgi-bin/mt/mt-comments.cgi" name="comments_form" onsubmit="if (this.bakecookie.checked) rememberMe(this)">
+                           <input type="hidden" name="static" value="1">
+                           <input type="hidden" name="entry_id" value="600">
+                           
+                           <div class="comments-open" id="comments-open">
+                              <h2 class="comments-open-header">Post a comment</h2>
+                             <center><b>非这个主题相关的留言请到：<a href="http://www.codingnow.com/2004/board">留言本</a></b></center>
+                              
+                              <div class="comments-open-content">
+                                 <script type="text/javascript">
+                                 <!--
+                                // writeTypeKeyGreeting(commenter_name, 600);
+                                 //-->
+                                 </script>
+                              
+                                 
+
+                                 <div id="comments-open-data">
+                                    <div id="name-email">
+                                       <p>
+                                          <label for="comment-author">名字：</label>
+                                          <input id="comment-author" name="author" size="30">
+                                       </p>
+                                       <p>
+                                          <label for="comment-email">Email 地址：</label>
+                                          <input id="comment-email" name="email" size="30">
+                                       </p>
+                                    <p>
+                                      <label for="comment-fcode"><b>为了验证您是人类</b>，请将六加一的结果（阿拉伯数字七）填写在下面：</label>
+                                       <input id="comment-fcode" name="fcode" size="30">
+                                    </p>
+                                    </div>
+                                    <p>
+                                       <label for="comment-url">URL:</label>
+                                       <input id="comment-url" name="url" size="30">
+                                    </p>
+                                    <p>
+                                       <label for="comment-bake-cookie"><input type="checkbox" id="comment-bake-cookie" name="bakecookie" onclick="if (!this.checked) forgetMe(document.comments_form)" value="1">
+                                          记住我的信息？</label>
+                                    </p>
+                                 </div>
+
+                                 <p id="comments-open-text">
+                                    <label for="comment-text">留言：<br>（不欢迎在留言中粘贴程序代码）</label>
+                                    <textarea id="comment-text" name="text" rows="10" cols="30"></textarea>
+                                 </p>
+                                 <div id="comments-open-footer" class="comments-open-footer">
+                                    <input type="submit" accesskey="s" name="post" id="comment-post" value="提交">
+                                 </div>
+                              </div>
+                           </div>
+                        </form>
+                        
+                     </div>
+                     
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-1194145-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+</body></html>
