@@ -1,0 +1,227 @@
+var clickmagick = function(uid, pid, fid) {
+    var encode = function(e) { return window.encodeURIComponent ? encodeURIComponent(e) : escape(e); }
+    var log = function(str) { if (console && console.log) { console.log(str) } }
+    var track_link = function(link) {
+        var script       = document.createElement("script");
+        script.type      = "text/javascript";
+        script.src       = link + "&rand=" + Math.random() * 1e20;
+        script.async     = true;
+        var first_script = document.getElementsByTagName("script")[0];
+        first_script.parentNode.insertBefore(script, first_script);
+     }
+    var new_ajax = function () {
+        var ajax;
+        if (window.XMLHttpRequest) { // Mozilla, Safari, ...
+            ajax = new XMLHttpRequest();
+        } else if (window.ActiveXObject) { // IE
+            try {
+                ajax = new ActiveXObject('Msxml2.XMLHTTP');
+            } catch (e) {
+                try {
+                    ajax = new ActiveXObject('Microsoft.XMLHTTP');
+                } catch (e) {
+                    log("no ajax found!");
+                }
+            }
+        }
+        return ajax;
+    }
+    var split_onload = function() {
+        if (ajax.readyState === 4) {
+            if (ajax.status === 200) {
+                var response = ajax.responseText;
+                log("response=" + response);
+                var json;
+                log("parsing json");
+
+                if (JSON) {
+                    json = JSON.parse( response );
+                } else {
+                    log("no JSON support!");
+                }
+
+                if (json.data && json.data.url) {
+                    log("URL=" + json.data.url);
+                }
+            } else {
+                log("Got " + ajax.status + ", stopping API poll, clearing interval id="+ interval_id);
+                log("tracking funnel request");
+                track_request(uid,pid,fid);
+                clearInterval(interval_id);
+            }
+            window.clk.json = json;
+        }
+    };
+    var special_url_params = function(split_id) {
+        var special_params  = {
+            utm_medium:  url_param("utm_medium"),
+            utm_term:    url_param("utm_term"),
+            utm_source:  url_param("utm_source"),
+            utm_content: url_param("utm_content"),
+            utm_text:    url_param("utm_text"),
+            // keep in sync with _special_params in
+            // Clickmagick::Tracker
+            cmfuid:      url_param("cmfuid"),
+            cmfid:       url_param("cmfid"),
+            cmfdesc:     url_param("cmfdesc"),
+            cmfcost:     url_param("cmfcost"),
+            cmfcostm:    url_param("cmfcostm"),
+            cmfgoal:     url_param("cmfgoal"),
+            cmfamt:      url_param("cmfamt"),
+            cmfpn:       url_param("cmfpn"),
+            cmfem:       url_param("cmfem")
+            // no need to pass cmfst
+        };
+
+        url_params   = 'cmfsd=' + split_id + '&';
+        for (var key in special_params) {
+            if (special_params[key]) {
+                url_params += key + "=" + special_params[key] + '&';
+            }
+        }
+        return url_params;
+    }
+
+    var url_param = function(name) { return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null; }
+
+    var poll_api = function(uid,pid,fid,interval_id) {
+        var json = window.clk.json;
+        if (json) {
+            log("got json!");
+            log(json);
+            clearInterval(interval_id);
+
+            // store split id so we can send to tracker
+            var split_id = json.data.funnel_page_variation_id;
+            // TODO: ignore some URL params?
+            if (window.location == window.clk.json.data.url) {
+                log("already on this URL, not redirecting");
+
+                // TODO: pass split_id by redirecting to ?cmfsd=...
+                // explicity track request
+                track_request(uid,pid,fid);
+            } else {
+                var redirect_url    = json.data.url || '';
+                if (redirect_url) {
+                    var pass_url_params = json.data.pass_url_params;
+                    var url_params      = '';
+
+                    if (pass_url_params) {
+                        var search = location.search.substring(1);
+                        if (search) {
+                            url_params = search + "&cmfsd=" + split_id;
+                        } else {
+                            url_params = "cmfsd=" + split_id;
+                        }
+                    } else {
+                        url_params = special_url_params(split_id);
+                    }
+
+                    if (url_params) {
+                        if (redirect_url.match(/\?/)) {
+                            redirect_url += "&" + url_params;
+                        } else {
+                            redirect_url += "?" + url_params;
+                        }
+                    }
+
+                    // actually redirect to the split URL
+                    log("redirecting to " + redirect_url);
+                    window.location.replace( redirect_url );
+                } else {
+                    log("Received empty redirect_url!");
+                }
+            }
+        } else {
+            var now = new Date().getTime()/1000;
+            if (window.clk.tries[interval_id] >= 20) {
+                log("waited long enough, giving up at (" + interval_id + ") " + now);
+                clearInterval(interval_id);
+            } else {
+                log("still waiting on a response at (" + interval_id + ") " + now);
+            }
+        }
+        window.clk.tries[interval_id]++;
+    }
+
+    var track_request = function(uid,pid,fid) {
+        var extra_params = "";
+        var track_url    = "//org.clkmg.com/?uid=" + uid + "&";
+        track_url       += fid ? ("fid=" + fid) : ("pid=" + pid);
+
+        if (typeof document.referrer != null && document.referrer != "")
+            extra_params += "&ref=" + encode(document.referrer);
+        if (navigator.connection) {
+            extra_params += "&connection_type=" + encode(navigator.connection.type);
+            extra_params += "&connection_downlinkmax=" + encode(navigator.connection.downlinkMax);
+        }
+
+        if (window.clk.funnel_page_variation_id)
+            extra_params += "&funnel_page_variation_id=" + encode(window.clk.funnel_page_variation_id);
+
+        extra_params += "&url=" + encode(window.location);
+        extra_params += "&screen=" + encode(screen.width + "x" + screen.height + "x" + screen.colorDepth);
+        extra_params += "&language=" + (navigator.language || navigator.userLanguage || navigator.browserLanguage || navigator.systemLanguage);
+        extra_params += "&tz=" + -1*(new Date().getTimezoneOffset() / 60);
+        extra_params += navigator.doNotTrack ? ("&dnt=" + navigator.doNotTrack) : "";
+        track_url    += extra_params;
+        if (fid) {
+            log("tracking funnel click: " + track_url);
+        } else {
+            log("tracking organic click: " + track_url);
+        }
+        track_link(track_url);
+    }
+
+    if (window.clk) {
+    } else {
+        window.clk       = {};
+        window.clk.funnel_page_variation_id = 0;
+    }
+
+    if (fid) {
+        // check to see if Splitting Done url param is set
+        var cmfsd = url_param("cmfsd");
+        log("cmfsd="+cmfsd);
+
+        var now = new Date().getTime()/1000;
+        if (ajax === 0) {
+            log("no ajax support, staying here");
+            track_request(uid,pid,fid);
+        } else {
+            if (JSON) {
+                if (cmfsd === null) {
+                    // do an ajax call to get data
+                    log("split test at " + now);
+                    var url       = "//org.clkmg.com/api/v1/split?fid=" + fid + "&url=" + encode(window.location) + "&r=" + Math.random()*1e20;
+                    var poll_freq = 50; // check for a response from our split API every 50ms
+                    var ajax      = new_ajax();
+                    ajax.onload   = split_onload;
+                    // anon function so things work in IE 9 and below
+                    // https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval#Callback_arguments
+                    var interval_id = window.setInterval(function() { poll_api(uid,pid,fid,interval_id) }, poll_freq);
+
+                    log("setInterval id = " + interval_id );
+
+                    if (!window.clk.tries) {
+                        window.clk.tries = [];
+                    }
+
+                    window.clk.tries[interval_id] = 0;
+
+                    ajax.open("GET", url, true);
+                    ajax.send(null);
+                } else {
+                    log("already split+redirected, tracking funnel click");
+                    track_request(uid,pid,fid);
+                }
+            } else {
+                log("no JSON support, staying here");
+                track_request(uid,pid,fid);
+            }
+       }
+    } else {
+        log("tracking organic request");
+        track_request(uid,pid);
+    }
+}
